@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<!-- For accessing Experssion Language disable the ElLang -->
+<%@ page isELIgnored="false" %>
+
+<!-- Now add here access -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,6 +155,14 @@ translateY(
 				MVC Framework</span>. It demonstrates the implementation of Controllers,
 			Views (JSP), Request Mapping, and Model objects.
 		</p>
+		
+		<p>
+			Company Name: ${comp_name }
+		</p>
+		
+		<p>
+			Company Salary: ${salary }
+		</p>
 
 		<br>
 
@@ -155,6 +170,10 @@ translateY(
 			Designed and developed by <span class="highlight">Harsh
 				Rathore</span>, aspiring Java Full Stack Developer.
 		</p>
+		
+		<c:forEach var="item" items="${mark }">
+			<p> ${item } </p>
+		</c:forEach>
 
 		<button onclick="showMessage()">Learn More</button>
 	</div>
