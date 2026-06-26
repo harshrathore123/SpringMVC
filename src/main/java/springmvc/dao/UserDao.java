@@ -19,4 +19,9 @@ public class UserDao {
 		return r;
 	}
 	
+	public User getUser(int userId) {
+		User showUser = this.hibernateTemplate.get(User.class, userId);
+		return showUser;
+	}
+	
 }

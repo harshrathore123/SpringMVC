@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Registration Successful</title>
+<title>User Details</title>
 
 <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,11 +30,11 @@ body{
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#667eea,#764ba2);
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 .card{
-    width:520px;
+    width:500px;
     padding:35px;
     border:none;
     border-radius:20px;
@@ -61,31 +62,31 @@ body{
 h2{
     color:#fff;
     text-align:center;
-    font-weight:bold;
-}
-
-.subtitle{
-    color:#f8f9fa;
-    text-align:center;
     margin-bottom:25px;
+    font-weight:bold;
 }
 
 .table{
     background:#fff;
-    border-radius:12px;
+    border-radius:10px;
     overflow:hidden;
 }
 
 .table th{
-    width:35%;
     background:#0d6efd;
     color:#fff;
+    width:35%;
+}
+
+.alert{
+    font-size:18px;
+    text-align:center;
 }
 
 .btn-home{
     width:100%;
     margin-top:20px;
-    border-radius:12px;
+    border-radius:10px;
     font-weight:bold;
     transition:.3s;
 }
@@ -121,34 +122,49 @@ h2{
 
 <div class="card">
 
-    <i class="bi bi-check-circle-fill icon text-success"></i>
+    <i class="bi bi-person-badge-fill icon"></i>
 
-    <h2>${title}</h2>
+    <c:choose>
 
-    <p class="subtitle">${Desc}</p>
+        <c:when test="${not empty showuser}">
 
-    <table class="table table-bordered table-hover">
+            <h2>User Details</h2>
 
-        <tr>
-            <th><i class="bi bi-envelope-fill"></i> Email</th>
-            <td>${user.email}</td>
-        </tr>
+            <table class="table table-bordered table-hover">
 
-        <tr>
-            <th><i class="bi bi-person-fill"></i> Name</th>
-            <td>${user.name}</td>
-        </tr>
+                <tr>
+                    <th><i class="bi bi-person-fill"></i> Name</th>
+                    <td>${showuser.name}</td>
+                </tr>
 
-        <tr>
-            <th><i class="bi bi-lock-fill"></i> Password</th>
-            <td>${user.password}</td>
-        </tr>
+                <tr>
+                    <th><i class="bi bi-envelope-fill"></i> Email</th>
+                    <td>${showuser.email}</td>
+                </tr>
 
-    </table>
+                <tr>
+                    <th><i class="bi bi-lock-fill"></i> Password</th>
+                    <td>${showuser.password}</td>
+                </tr>
 
-    <a href="register" class="btn btn-primary btn-home">
+            </table>
+
+        </c:when>
+
+        <c:otherwise>
+
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                ${msg}
+            </div>
+
+        </c:otherwise>
+
+    </c:choose>
+
+    <a href="showUser" class="btn btn-primary btn-home">
         <i class="bi bi-arrow-left-circle"></i>
-        Register Another User
+        Search Another User
     </a>
 
 </div>

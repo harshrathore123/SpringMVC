@@ -17,4 +17,7 @@ public class UserService {
 		return this.userDao.userSave(user);
 	}
 	
+	public User showUser(int userId) {
+		return this.userDao.getUser(userId);
+	}
 }
